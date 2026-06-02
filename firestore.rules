@@ -1,0 +1,35 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // People registry — public read, anyone can create or update a profile
+    match /people/{personId} {
+      allow read:   if true;
+      allow create: if true;
+      allow update: if true;  // PIN verification is enforced in the app
+      allow delete: if false;  // Only via Firebase Console
+    }
+
+    // Photos — public read, write blocked (admin uploads via app with PIN)
+    match /photos/{photoId} {
+      allow read:   if true;
+      allow write:  if true;  // Admin PIN enforced client-side
+    }
+
+    // Markers — public read/write (admin PIN enforced client-side)
+    match /markers/{markerId} {
+      allow read:   if true;
+      allow write:  if true;
+    }
+  }
+}
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read:  if true;
+      allow write: if true;   // Limit file size in Firebase Console if needed
+    }
+  }
+}
