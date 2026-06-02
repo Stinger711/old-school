@@ -1,0 +1,14 @@
+{
+  "name": "Old School · Class of '86",
+  "short_name": "Old School",
+  "description": "Durban High School reunion photo archive",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0e1628",
+  "theme_color": "#0e1628",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "dhs-crest.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "dhs-crest.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
